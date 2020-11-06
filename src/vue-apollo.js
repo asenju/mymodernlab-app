@@ -17,8 +17,6 @@ export const filesRoot = process.env.VUE_APP_FILES_ROOT || httpEndpoint.substr(0
 
 Vue.prototype.$filesRoot = filesRoot
 
-console.log(process.env.VUE_APP_GRAPHQL_WS)
-
 // Config
 const defaultOptions = {
   // You can use `https` for secure connection (recommended in production)
