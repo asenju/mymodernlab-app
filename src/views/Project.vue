@@ -54,7 +54,6 @@
 </template>
 
 <script lang="ts">
-import gql from 'graphql-tag'
 import ExperimentCard from '@/components/ExperimentCard.vue'
 
 export default {

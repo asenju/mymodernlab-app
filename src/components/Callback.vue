@@ -1,6 +1,6 @@
+/* eslint-disable prettier/prettier */
 <template>
-  <div class="spinner">
-  </div>
+  <div class="spinner"></div>
 </template>
 
 <script>

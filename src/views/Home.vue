@@ -15,28 +15,12 @@
   </v-container>
 </template>
 
-<script lang="ts">
+<script>
 import gql from 'graphql-tag'
 import ProjectCard from '@/components/ProjectCard.vue'
 
 export default {
-  apollo: {
-    projects: gql`
-      query {
-        projects {
-          id
-          name
-          created_at
-        }
-      }
-    `,
-  },
-  data() {
-    return {
-      isAuthenticated: false,
-      isLoading: true,
-    }
-  },
+  name: 'home',
   methods: {
     handleLoginEvent(data) {
       this.isAuthenticated = data.loggedIn
@@ -49,8 +33,25 @@ export default {
   mounted() {
     this.isLoading = false
   },
-  components: {
-    ProjectCard,
+  data() {
+    return {
+      isAuthenticated: false,
+      isLoading: true,
+    }
+  },
+  apollo: {
+    projects: gql`
+      query {
+        projects {
+          id
+          name
+          created_at
+        }
+      }
+    `,
+    components: {
+      ProjectCard,
+    },
   },
 }
 </script>
