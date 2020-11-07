@@ -8,7 +8,7 @@ import store from './store';
 import AuthPlugin from './plugins/auth';
 Vue.use(AuthPlugin);
 
-import { createProvider } from './vue-apollo';
+import { createProvider } from './vue-apollo'
 
 Vue.config.productionTip = false;
 

@@ -1,15 +1,15 @@
 <template>
   <v-container>
     <v-row>
-      <v-col class="col-8 offset-2">
-        <div>tst {{ projects }}</div>
+      <v-col class="col-8 offset-2" v-if="!isLoading">
+        <div>projects: {{ $apollo.queries.projects }} - {{ error }}</div>
         <div v-for="project in projects" :key="project.id">
           {{ project.id }}. {{ project.name }}
         </div>
-        <project-card />
-        <project-card />
-        <project-card />
-        <project-card />
+        <ProjectCard />
+        <ProjectCard />
+        <ProjectCard />
+        <ProjectCard />
       </v-col>
     </v-row>
   </v-container>
@@ -17,10 +17,27 @@
 
 <script>
 import gql from 'graphql-tag'
+
 import ProjectCard from '@/components/ProjectCard.vue'
 
 export default {
   name: 'home',
+  apollo: {
+    projects: gql`
+      query {
+        projects {
+          id
+          name
+        }
+      }
+    `,
+    result ({ data, loading, networkStatus }) {
+      console.log('We got some result!', data, loading, networkStatus)
+    },
+    error(error) {
+      this.error = JSON.stringify(error.message)
+    },
+  },
   methods: {
     handleLoginEvent(data) {
       this.isAuthenticated = data.loggedIn
@@ -37,21 +54,12 @@ export default {
     return {
       isAuthenticated: false,
       isLoading: true,
+      projects: [],
+      error: null,
     }
   },
-  apollo: {
-    projects: gql`
-      query {
-        projects {
-          id
-          name
-          created_at
-        }
-      }
-    `,
-    components: {
-      ProjectCard,
-    },
+  components: {
+    ProjectCard,
   },
 }
 </script>

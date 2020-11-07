@@ -1,5 +1,5 @@
 <template>
-  <v-card :loading="loading" class="mx-auto my-8">
+  <v-card class="mx-auto my-8">
     <template slot="progress">
       <v-progress-linear height="10" indeterminate></v-progress-linear>
     </template>
@@ -28,12 +28,9 @@
   </v-card>
 </template>
 
-<script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
-
-@Component
-export default class ProjectCard extends Vue {
-  @Prop() private msg!: string
+<script>
+export default {
+  name: 'project-card',
 }
 </script>
 

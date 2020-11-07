@@ -53,7 +53,7 @@ const defaultOptions = {
   getAuth: tokenName => {
     // get the authentication token from local storage if it exists
     // return the headers to the context so httpLink can read them
-    const token = localStorage.getItem('apollo-token')
+    const token = localStorage.getItem(AUTH_TOKEN)
     if (token) {
       return 'Bearer ' + token
     } else {
@@ -90,8 +90,9 @@ export function createProvider (options = {}) {
 
 // Manually call this when user log in
 export async function onLogin (apolloClient, token) {
+  console.log('on login')
   if (typeof localStorage !== 'undefined' && token) {
-    console.log(token)
+    console.log('a', token)
     localStorage.setItem(AUTH_TOKEN, token)
   }
   if (apolloClient.wsClient) restartWebsockets(apolloClient.wsClient)

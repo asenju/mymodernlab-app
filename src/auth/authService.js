@@ -80,7 +80,6 @@ class AuthService extends EventEmitter {
   }
 
   localLogin(authResult) {
-    console.log(authResult);
     this.idToken = authResult.idToken;
     this.profile = authResult.idTokenPayload;
 
@@ -100,7 +99,6 @@ class AuthService extends EventEmitter {
 
   renewTokens() {
     return new Promise((resolve, reject) => {
-      console.log(localStorage.getItem(localStorageKey));
       if (localStorage.getItem(localStorageKey) !== "true") {
         return reject("Not logged in");
       }

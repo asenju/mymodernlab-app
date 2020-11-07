@@ -1,8 +1,5 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-import Home from '../views/Home.vue';
-import Profile from '../views/Profile.vue';
-import Callback from '../components/Callback.vue';
 import auth from '../auth/authService';
 
 Vue.use(VueRouter);
@@ -11,7 +8,8 @@ const routes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: () =>
+      import('../views/Home.vue')
   },
   {
     path: '/project/new',
@@ -55,9 +53,16 @@ const routes: Array<RouteConfig> = [
       import('../views/Review.vue')
   },
   {
+    path: '/profile',
+    name: 'profile',
+    component: () =>
+      import('../views/Profile.vue')
+  },
+  {
     path: '/callback',
-    name: 'callback',
-    component: Callback
+    name: 'Callback',
+    component: () =>
+      import('../components/Callback.vue')
   },
 ];
 
